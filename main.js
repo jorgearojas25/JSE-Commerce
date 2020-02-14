@@ -130,7 +130,7 @@ class Pedido {
   constructor(usuarioPedido, productoPedido, idPedido) {
     this.usuarioPedido = usuarioPedido;
     this.productoPedido = productoPedido;
-    this.idPedido = idPedido ? idPedido++ : 1;
+    this.idPedido = idPedido++ ;
   }
 }
 /*
