@@ -40,6 +40,7 @@ const MenuPersona = () => {
   switch (SeleccionMenuPersona()) {
     case "a":
         IngresarUsuario();
+        MenuPersona();
       break;
     case "b":
       ListadoUsuarios();
@@ -47,6 +48,7 @@ const MenuPersona = () => {
       break;
     case "0":
       Ejecutar();
+      break;
     default:
       alert("Esta opcion no esta disponible");
       MenuPersona();
