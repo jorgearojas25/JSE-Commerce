@@ -8,6 +8,7 @@ const Ejecutar = () => {
       MenuPersona();
       break;
     case 2:
+        MenuProductos();
       break;
     case 3:
       break;
@@ -36,6 +37,12 @@ const SeleccionMenuPersona = () => {
   );
 };
 
+const SeleccionMenuProductos = () => {
+    return prompt(
+      `Productos: \n a. Alta \n b. Listado \n Oprime 0 para volver al inicio`
+    );
+  };
+
 const MenuPersona = () => {
   switch (SeleccionMenuPersona()) {
     case "a":
@@ -55,6 +62,24 @@ const MenuPersona = () => {
       break;
   }
 };
+
+const MenuProductos = () => {
+    switch (SeleccionMenuProductos()) {
+      case "a":
+          IngresarProductos();
+          MenuProductos();
+        break;
+      case "b":
+        break;
+      case "0":
+        Ejecutar();
+        break;
+      default:
+        alert("Esta opcion no esta disponible");
+        MenuProductos();
+        break;
+    }
+  };
 
 const ListadoUsuarios = () => {
   let listado = "";
@@ -86,11 +111,17 @@ const IngresarUsuario = () => {
   return Usuarios.length ? alert("Usuario registrado correctamente") : alert("No se pudo registrar usuario"); 
 }
 
-///Clases
+const IngresarProductos = () => {
+    Productos.push(new Producto(prompt("Ingrese nombre de producto"),
+                  prompt("Ingresa descripcion de producto"),
+                  Productos.length )
+                  );
+    return Productos.length ? alert("Producto registrado correctamente") : alert("No se pudo registrar el producto"); 
+  }///Clases
 
 class Usuario {
   constructor(nombre, apellido, telefono, idUsuario) {
-    this.idUsuario = idUsuario + 1;
+    this.idUsuario = idUsuario++;
     this.nombre = nombre;
     this.apellido = apellido;
     this.telefono = telefono;
@@ -99,7 +130,7 @@ class Usuario {
 
 class Producto {
   constructor(nombreProducto, descripcionProducto, idProducto) {
-    this.idProducto = idProducto > 1 ? idProducto : 1;
+    this.idProducto = idProducto++;
     this.nombreProducto = nombreProducto;
     this.descripcionProducto = descripcionProducto;
   }
@@ -109,7 +140,7 @@ class Pedido {
   constructor(usuarioPedido, productoPedido, idPedido) {
     this.usuarioPedido = usuarioPedido;
     this.productoPedido = productoPedido;
-    this.idPedido = idPedido > 1 ? idPedido : 1;
+    this.idPedido = idPedido++ ;
   }
 }
 /*
