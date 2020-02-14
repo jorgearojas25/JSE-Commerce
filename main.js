@@ -65,16 +65,21 @@ const ListadoUsuarios = () => {
 };
 
 const IngresarUsuario = () => {
- 
   Usuarios.push(new Usuario(prompt("Ingrese su nombre"),
                 prompt("Ingresa su apellido"),
                 prompt("Ingresa su telefono"),
                 Usuarios.length )
                 );
-  return Usuarios.length > 1? alert("Usuario registrado correctamente") : alert("No se pudo registrar usuario") 
+  return Usuarios.length ? alert("Usuario registrado correctamente") : alert("No se pudo registrar usuario"); 
 }
 
-///Clases
+const IngresarProductos = () => {
+    Productos.push(new Producto(prompt("Ingrese nombre de producto"),
+                  prompt("Ingresa descripcion de producto"),
+                  Productos.length )
+                  );
+    return Productos.length ? alert("Usuario registrado correctamente") : alert("No se pudo registrar usuario"); 
+  }///Clases
 
 class Usuario {
   constructor(nombre, apellido, telefono, idUsuario) {
