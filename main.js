@@ -5,7 +5,8 @@ const Pedidos = [];
 const Ejecutar = () => {
   switch (Menu()) {
     case 1:
-        MenuPersona();
+      MenuPersona();
+      break;
     case 2:
       break;
     case 3:
@@ -30,24 +31,33 @@ const Menu = () => {
 };
 
 const SeleccionMenuPersona = () => {
-  return prompt(`Personas: \n a. Alta \n b. Listado \n Oprime 0 para volver al inicio`);
+  return prompt(
+    `Personas: \n a. Alta \n b. Listado \n Oprime 0 para volver al inicio`
+  );
 };
 
 const MenuPersona = () => {
   switch (SeleccionMenuPersona()) {
     case "a":
-        alert('alta')
+      alert("alta");
       break;
     case "b":
-        alert('lista')
+      ListadoUsuarios();
+      MenuPersona();
       break;
-    case '0':
-        Ejecutar();
+    case "0":
+      Ejecutar();
     default:
-        alert("Esta opcion no esta disponible");
-        MenuPersona();
+      alert("Esta opcion no esta disponible");
+      MenuPersona();
       break;
   }
+};
+
+const ListadoUsuarios = () => {
+    let listado = '';
+    Usuarios.map
+    return alert(listado)
 };
 
 /*
