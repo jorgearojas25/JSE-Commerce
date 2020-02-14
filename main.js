@@ -36,7 +36,7 @@ const SeleccionMenuPersona = () => {
 const MenuPersona = () => {
   switch (SeleccionMenuPersona()) {
     case "a":
-        alert('alta')
+        IngresarUsuario();
       break;
     case "b":
         alert('lista')
@@ -57,7 +57,9 @@ const IngresarUsuario = () => {
                 prompt("Ingresa su telefono"),
                 Usuarios.length )
                 );
+  return Usuarios.length > 1? alert("Usuario registrado correctamente") : alert("No se pudo registrar usuario") 
 }
+
 ///Clases
 
 class Usuario {
