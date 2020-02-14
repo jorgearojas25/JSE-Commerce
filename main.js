@@ -66,6 +66,16 @@ const ListadoUsuarios = () => {
   return alert(listado);
 };
 
+const ListadoProductos = () => {
+    let listado = "";
+    if (Productos.length) {
+      for (const product of Productos) {
+          listado += `${user.idUsuario}. ${user.nombre} ${user.apellido} \n`;
+      }
+    }
+    return alert(listado);
+  };
+
 const IngresarUsuario = () => {
   Usuarios.push(new Usuario(prompt("Ingrese su nombre"),
                 prompt("Ingresa su apellido"),
