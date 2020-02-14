@@ -70,7 +70,7 @@ const ListadoProductos = () => {
     let listado = "";
     if (Productos.length) {
       for (const product of Productos) {
-          listado += `${user.idUsuario}. ${user.nombre} ${user.apellido} \n`;
+          listado += `${product.idProducto}. ${product.nombreProducto} \n`;
       }
     }
     return alert(listado);
