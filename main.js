@@ -65,8 +65,8 @@ const ListadoUsuarios = () => {
 };
 
 const IngresarUsuario = () => {
-
-  Usuarios.push(new Usuario= (prompt("Ingrese su nombre"),
+ 
+  Usuarios.push(new Usuario(prompt("Ingrese su nombre"),
                 prompt("Ingresa su apellido"),
                 prompt("Ingresa su telefono"),
                 Usuarios.length )
