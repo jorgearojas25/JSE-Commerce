@@ -72,6 +72,7 @@ const IngresarUsuario = () => {
                 prompt("Ingresa su telefono"),
                 Usuarios.length )
                 );
+                
   return Usuarios.length ? alert("Usuario registrado correctamente") : alert("No se pudo registrar usuario"); 
 }
 
@@ -79,7 +80,7 @@ const IngresarUsuario = () => {
 
 class Usuario {
   constructor(nombre, apellido, telefono, idUsuario) {
-    this.idUsuario = idUsuario ? idUsuario++ : 1;
+    this.idUsuario = idUsuario + 1;
     this.nombre = nombre;
     this.apellido = apellido;
     this.telefono = telefono;
