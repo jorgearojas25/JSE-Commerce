@@ -30,7 +30,7 @@ const Menu = () => {
 };
 
 const SeleccionMenuPersona = () => {
-  return prompt(`Personas: \n a. Alta \n b. Listado`);
+  return prompt(`Personas: \n a. Alta \n b. Listado \n Oprime 0 para volver al inicio`);
 };
 
 const MenuPersona = () => {
@@ -41,7 +41,11 @@ const MenuPersona = () => {
     case "b":
         alert('lista')
       break;
+    case '0':
+        Ejecutar();
     default:
+        alert("Esta opcion no esta disponible");
+        MenuPersona();
       break;
   }
 };
