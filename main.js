@@ -50,15 +50,20 @@ const MenuPersona = () => {
   }
 };
 
+const IngresarUsuario = () => {
+  return  new Usuario = (prompt("Ingrese su nombre"),
+                prompt("Ingresa su apellido"),
+                prompt("Ingresa su telefono"),
+                Usuarios.length );
+}
 ///Clases
 
 class Usuario {
-    constructor(nombre, apellido, correo, direccionPostal, idUsuario) {
+    constructor(nombre, apellido, telefono, idUsuario) {
         this.idUsuario = idUsuario > 1? idUsuario: 1;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.correo = correo;
-        this.direccionPostal = direccionPostal;
+        this.telefono = telefono;
     }
 }
 
