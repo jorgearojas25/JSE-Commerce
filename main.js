@@ -3,7 +3,7 @@ const Productos = [];
 const Pedidos = [];
 
 const Ejecutar = () => {
-
+    alert('En proceso');
 }
 
 /*
