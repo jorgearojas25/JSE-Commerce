@@ -121,7 +121,7 @@ const IngresarProductos = () => {
 
 class Usuario {
   constructor(nombre, apellido, telefono, idUsuario) {
-    this.idUsuario = idUsuario + 1;
+    this.idUsuario = idUsuario++;
     this.nombre = nombre;
     this.apellido = apellido;
     this.telefono = telefono;
@@ -130,7 +130,7 @@ class Usuario {
 
 class Producto {
   constructor(nombreProducto, descripcionProducto, idProducto) {
-    this.idProducto = idProducto > 1 ? idProducto : 1;
+    this.idProducto = idProducto++;
     this.nombreProducto = nombreProducto;
     this.descripcionProducto = descripcionProducto;
   }
