@@ -291,3 +291,9 @@ const VerDetallesObjeto = objeto => {
   // });
   return detalle;
 };
+
+
+/**
+ * TODO: PARA LOS PEDIDOS, SELECCIONAR USUARIO, INGRESARLE ITEMS HASTA QUE TERMINE 
+ * ? QUIZAS CON LA PALABRA STOP O INGRESANDO EL CODIGO 0 
+ */
