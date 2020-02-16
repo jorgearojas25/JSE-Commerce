@@ -176,6 +176,10 @@ const BuscarProducto = indice => {
   return Productos.filter(prod => prod.idProducto === indice)[0];
 };
 
+const BuscarUsuario = indice => {
+  return Usuarios.filter(user => user.idUsuario === indice)[0];
+};
+
 // * ACCIONES
 
 const EditarEliminarProductos = producto => {
@@ -193,12 +197,27 @@ const EditarEliminarProductos = producto => {
   }
 };
 
+const EditarEliminarUsuarios = usuario => {
+  let detalles = VerDetallesObjeto(usuario);
+  let seleccion = Number(
+    prompt(
+      `El usuario elegido es: \n ${detalles} \n Para editar escriba uno (1) \nPara eliminar escriba dos (2) \n Para volver marque 0`
+    )
+  );
+  if (seleccion === 1) {
+    EditarUsuario(usuario);
+  }
+  if (seleccion === 2) {
+    EliminarUsuario(usuario);
+  }
+};
+
 // * CONSULTAR LISTA
 
 const ConsultarListaProductos = () => {
   let indice = Number(
     prompt(
-      "Si deseas ver los detalles de un producto marca su codigo \nSi no deseas hacer nada marca 0\n" +
+      "Si deseas ver los detalles de un producto marca su codigo \nSi no deseas hacer nada marca 0 o enter\n" +
         ListadoProductos()
     )
   );
@@ -212,7 +231,7 @@ const ConsultarListaProductos = () => {
 const ConsultarListaUsuarios = () => {
   let indice = Number(
     prompt(
-      "Si deseas ver los detalles de un usuario marca su codigo \nSi no deseas hacer nada marca 0\n" +
+      "Si deseas ver los detalles de un usuario marca su codigo \nSi no deseas hacer nada marca 0 o enter\n" +
         ListadoUsuarios()
     )
   );
@@ -232,6 +251,13 @@ const EliminarProducto = producto => {
   }
 };
 
+const EliminarUsuario = usuario => {
+  if (confirm(`Seguro que desea eliminar el usuario: ${usuario.nombre}?`)) {
+    Usuarios.splice(Usuarios.indexOf(usuario), 1);
+    return alert(`se elimino ${usuario.nombre} de la lista de usuarios`);
+  }
+};
+
 // * EDITAR
 
 const EditarProducto = producto => {
@@ -239,6 +265,15 @@ const EditarProducto = producto => {
     producto.nombre = prompt('Ingrese el nuevo nombre', producto.nombre);
     producto.descripcion = prompt('Ingrese la nueva descripcion', producto.descripcion);
     return alert(`se edito ${producto.nombre} en la lista de productos`);
+  }
+}
+
+const EditarUsuario = usuario => {
+  if (confirm(`Seguro que desea editar el usuario: ${usuario.nombre}?`)) {
+    usuario.nombre = prompt('Ingrese el nuevo nombre', usuario.nombre);
+    usuario.apellido = prompt('Ingrese el nuevo apellido', usuario.apellido);
+    usuario.telefono =  prompt('Ingrese el nuevo telefono', usuario.telefono);
+    return alert(`se edito ${usuario.nombre} en la lista de usuarios`);
   }
 }
 
