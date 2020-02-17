@@ -42,6 +42,7 @@ const Ejecutar = () => {
       MenuProductos();
       break;
     case 3:
+      MenuPedidos();
       break;
     case 4:
       alert("Gracias por tu visita");
@@ -95,6 +96,25 @@ const MenuProductos = () => {
   }
 };
 
+const MenuPedidos = () => {
+  switch (SeleccionMenuPedidos()) {
+    case "a":
+      IngresarPedido();
+      MenuPedidos();
+      break;
+    case "b":
+      ConsultarListaPedidos();
+      MenuPedidos();
+    case "0":
+      Ejecutar();
+      break;
+    default:
+      alert("Esta opcion no esta disponible");
+      MenuPedidos();
+      break;
+  }
+};
+
 // * SELECCTION MENUS
 
 const SeleccionMenuPrincipal = () => {
@@ -109,13 +129,19 @@ const SeleccionMenuPrincipal = () => {
 const SeleccionMenuPersona = () => {
   return prompt(
     `Personas: \n a. Alta \n b. Listado \n Oprime 0 para volver al inicio`
-  );
+  ).toLowerCase();
 };
 
 const SeleccionMenuProductos = () => {
   return prompt(
     `Productos: \n a. Alta \n b. Listado \n Oprime 0 para volver al inicio`
-  );
+  ).toLowerCase();
+};
+
+const SeleccionMenuPedidos = () => {
+  return prompt(
+    `Productos: \n a. Alta \n b. Listado \n Oprime 0 para volver al inicio`
+  ).toLowerCase();
 };
 
 // * AGREGAR
@@ -126,10 +152,12 @@ const IngresarUsuario = () => {
       prompt("Ingrese su nombre"),
       prompt("Ingresa su apellido"),
       prompt("Ingresa su telefono"),
-      Usuarios[Usuarios.length - 1] ? Usuarios[Usuarios.length - 1].idUsuario : 0
+      Usuarios[Usuarios.length - 1]
+        ? Usuarios[Usuarios.length - 1].idUsuario
+        : 0
     )
   );
- 
+
   return Usuarios.length
     ? alert("Usuario registrado correctamente")
     : alert("No se pudo registrar usuario");
@@ -140,12 +168,30 @@ const IngresarProductos = () => {
     new Producto(
       prompt("Ingrese nombre de producto"),
       prompt("Ingresa descripcion de producto"),
-      Productos[Productos.length - 1] ? Productos[Productos.length - 1].idProducto : 0
+      Productos[Productos.length - 1]
+        ? Productos[Productos.length - 1].idProducto
+        : 0
     )
   );
   return Productos.length
     ? alert("Producto registrado correctamente")
     : alert("No se pudo registrar el producto");
+};
+
+const IngresarPedido = () => {
+  let user = Number(prompt(`Seleccione un usuario de la lista escribiendo su codigo \n ${ListadoUsuarios()}`));
+  let products = [];
+  let prod = '';
+
+  do {
+    prod = Number(prompt(`Seleccione los productos que desea incluir en su pedido, detengase con '0' \n ${ListadoProductos()}`))
+    if(prod){
+      prod+1 <= Productos.length ? products.push(BuscarProducto(prod)) : alert('No se encuentra este producto');
+    }
+  } while (prod !== 0);
+
+  Pedidos.push(new Pedido(BuscarUsuario(user), products)) 
+
 };
 
 // * OBTENER LISTAS
@@ -170,6 +216,8 @@ const ListadoProductos = () => {
   return listado;
 };
 
+const ListaPedidos = () => {};
+
 // * BUSCAR UNO
 
 const BuscarProducto = indice => {
@@ -179,6 +227,8 @@ const BuscarProducto = indice => {
 const BuscarUsuario = indice => {
   return Usuarios.filter(user => user.idUsuario === indice)[0];
 };
+
+const BuscarPedido = indice => {};
 
 // * ACCIONES
 
@@ -242,6 +292,8 @@ const ConsultarListaUsuarios = () => {
   }
 };
 
+const ConsultarListaPedidos = () => {};
+
 // * ELIMINAR
 
 const EliminarProducto = producto => {
@@ -262,20 +314,23 @@ const EliminarUsuario = usuario => {
 
 const EditarProducto = producto => {
   if (confirm(`Seguro que desea editar el producto: ${producto.nombre}?`)) {
-    producto.nombre = prompt('Ingrese el nuevo nombre', producto.nombre);
-    producto.descripcion = prompt('Ingrese la nueva descripcion', producto.descripcion);
+    producto.nombre = prompt("Ingrese el nuevo nombre", producto.nombre);
+    producto.descripcion = prompt(
+      "Ingrese la nueva descripcion",
+      producto.descripcion
+    );
     return alert(`se edito ${producto.nombre} en la lista de productos`);
   }
-}
+};
 
 const EditarUsuario = usuario => {
   if (confirm(`Seguro que desea editar el usuario: ${usuario.nombre}?`)) {
-    usuario.nombre = prompt('Ingrese el nuevo nombre', usuario.nombre);
-    usuario.apellido = prompt('Ingrese el nuevo apellido', usuario.apellido);
-    usuario.telefono =  prompt('Ingrese el nuevo telefono', usuario.telefono);
+    usuario.nombre = prompt("Ingrese el nuevo nombre", usuario.nombre);
+    usuario.apellido = prompt("Ingrese el nuevo apellido", usuario.apellido);
+    usuario.telefono = prompt("Ingrese el nuevo telefono", usuario.telefono);
     return alert(`se edito ${usuario.nombre} en la lista de usuarios`);
   }
-}
+};
 
 // * TRANSVERSALES
 
@@ -292,8 +347,7 @@ const VerDetallesObjeto = objeto => {
   return detalle;
 };
 
-
 /**
- * TODO: PARA LOS PEDIDOS, SELECCIONAR USUARIO, INGRESARLE ITEMS HASTA QUE TERMINE 
- * ? QUIZAS CON LA PALABRA STOP O INGRESANDO EL CODIGO 0 
+ * TODO: PARA LOS PEDIDOS, SELECCIONAR USUARIO, INGRESARLE ITEMS HASTA QUE TERMINE
+ * ? QUIZAS CON LA PALABRA STOP O INGRESANDO EL CODIGO 0
  */
